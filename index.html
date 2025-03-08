@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Goat Translator</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.0/flowbite.min.js"></script> -->
+    <script>
+        function translateToGoat() {
+            let inputText = document.getElementById("textInput").value;
+            let words = inputText.split(" ");
+            let goatSounds = ["baaa", "meeeh", "maaah", "beeeh"];
+            let goatSpeak = words.map(word => goatSounds[Math.floor(Math.random() * goatSounds.length)]).join(" ");
+            document.getElementById("outputText").innerText = goatSpeak;
+            playGoatSound();
+        }
+        
+        function playGoatSound() {
+            let goatAudio = [
+                "https://www.fesliyanstudios.com/play-mp3/4384",
+                "https://www.fesliyanstudios.com/play-mp3/4385",
+                "https://www.fesliyanstudios.com/play-mp3/4386"
+            ];
+            let randomSound = goatAudio[Math.floor(Math.random() * goatAudio.length)];
+            let audio = new Audio(randomSound);
+            audio.play().catch(error => console.log("Audio play failed: ", error));
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center h-screen p-4">
+    <div class="container p-6 max-w-md w-full text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">Text-to-Goat Translator 🐐</h1>
+        <textarea id="textInput" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Enter text here..."></textarea>
+        <button onclick="translateToGoat()" class="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all">Translate</button>
+        <p id="outputText" class="mt-4 p-3 bg-gray-100 border rounded-lg min-h-[50px] text-lg font-semibold text-gray-700"></p>
+    </div>
+</body>
+</html>
